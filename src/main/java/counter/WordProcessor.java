@@ -1,41 +1,34 @@
+
 package counter;
 
 /**
  * WordProcessor implementation of the {@link Counter} interface.
- *
- * Complete this class in Step 2 and Step 3 on your feature branches.
  */
 public class WordProcessor implements Counter {
 
-    // =========================================================================
-    // STEP 3: Encapsulated Fallback State
-    // =========================================================================
-
-    // Private text attribute
+    // Encapsulated fallback state
     private String text = "";
 
-    // Getter for text
+    // Getter
     public String getText() {
-        return text;
+        return this.text;
     }
 
-    // Setter for text
+    // Setter
     public void setText(String text) {
         this.text = text;
     }
 
-    // =========================================================================
-    // STEP 2: Core Sentence Analysis Methods
-    // =========================================================================
-
     /**
      * Counts the number of words in the given sentence.
-     *
-     * @param sentence input string to analyze
-     * @return number of words
      */
     @Override
     public int countWords(String sentence) {
+
+        if (sentence == null) {
+            sentence = this.text;
+        }
+
         if (sentence.isEmpty()) {
             return 0;
         }
@@ -44,13 +37,15 @@ public class WordProcessor implements Counter {
     }
 
     /**
-     * Counts alphabetic letters only, ignoring spaces, punctuation, and digits.
-     *
-     * @param sentence input string to analyze
-     * @return count of alphabetic letters
+     * Counts alphabetic letters only.
      */
     @Override
     public int countLetters(String sentence) {
+
+        if (sentence == null) {
+            sentence = this.text;
+        }
+
         int letters = 0;
 
         for (int i = 0; i < sentence.length(); i++) {
@@ -65,13 +60,15 @@ public class WordProcessor implements Counter {
     }
 
     /**
-     * Returns the total character length of the sentence, including spaces.
-     *
-     * @param sentence input string to analyze
-     * @return total length
+     * Returns the total character length, including spaces.
      */
     @Override
     public int getLength(String sentence) {
+
+        if (sentence == null) {
+            sentence = this.text;
+        }
+
         return sentence.length();
     }
 }
